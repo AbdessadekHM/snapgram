@@ -5,21 +5,24 @@ import SignupForm from "./_auth/forms/SignupForm"
 import "./globals.css"
 import AuthLayout from "./_auth/AuthLayout"
 import RootLayout from "./_root/RootLayout"
-
+import { Toaster } from "@/components/ui/toaster"
 
 const App = () => {
   return (
-    <Routes>
-        {/*public routes*/}
-        <Route element={<AuthLayout/>}>
-            <Route path="/sign-in" element = {<SigninForm/>} />
-            <Route path="/sign-up" element = {<SignupForm/>} />
-        </Route>
-        <Route element={<RootLayout/>}>
-            <Route index element = {<Home/>}/>
-        </Route>
-        {/*private routes*/}
-    </Routes>
+    <main>
+      <Routes>
+          {/*public routes*/}
+          <Route element={<AuthLayout/>}>
+              <Route path="/sign-in" element = {<SigninForm/>} />
+              <Route path="/sign-up" element = {<SignupForm/>} />
+          </Route>
+          <Route element={<RootLayout/>}>
+              <Route index element = {<Home/>}/>
+          </Route>
+          {/*private routes*/}
+      </Routes>
+      <Toaster/>
+    </main>
   )
 }
 

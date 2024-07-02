@@ -2,7 +2,6 @@ import { ID, Query } from "appwrite";
 
 import { INewUser } from "@/types";
 import { account, appwriteConfig, avatars, databases } from "./config";
-import { Url } from "url";
 
 
 export async function createUserAccount(user: INewUser){

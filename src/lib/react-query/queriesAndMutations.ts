@@ -15,9 +15,9 @@ export const useCreateUserAccount = ()=>{
 
 export const useSignInAccount = ()=>{
     return useMutation({
-        mutationFn: (user: {
+        mutationFn:async (user: {
             email: string;
             password: string;
-        })=>signInAccount(user)
+        })=> await signInAccount(user)
     })
 }

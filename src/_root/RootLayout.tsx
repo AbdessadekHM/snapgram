@@ -5,7 +5,7 @@ import Topbar from "@/components/ui/shared/Topbar"
 
 const RootLayout = () => {
   return (
-    <div  className="w-full md:flex">
+    <div  className="w-full md:flex h-screen ">
       <Topbar/>
       <LeftSidebar/>
       <section className="flex flex-1 h-full">

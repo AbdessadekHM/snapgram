@@ -1,4 +1,4 @@
-import {Client, Account, Databases, Storage, Avatars} from "appwrite"
+import {Client, Account, Databases, Storage, Avatars, Permission, Role} from "appwrite"
 
 export const appwriteConfig = {
     url : import.meta.env.VITE_APPWRITE_URL,
@@ -18,3 +18,11 @@ export const account = new Account(client);
 export const databases = new Databases(client);
 export const storage = new Storage(client);
 export const avatars = new Avatars(client)
+
+export const permissions = [
+    Permission.create(Role.any()),
+    Permission.read(Role.any()),
+    Permission.update(Role.any()),
+    Permission.delete(Role.any()),
+
+]

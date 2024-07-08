@@ -5,10 +5,11 @@ const Bottombar = () => {
   const {pathname} = useLocation();
   return (
     <section className="bottom-bar">
-      {bottombarLinks.map((link)=>{
+      {bottombarLinks.map((link,index:number)=>{
         const isActive = pathname === link.route;
         return ( 
             <Link
+            key={index}
             to={link.route}
             className={`${isActive && 'bg-primary-500 rounded-[10px]'} flex-center flex-col gap-1 transition`}
             >

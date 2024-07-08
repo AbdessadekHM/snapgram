@@ -16,12 +16,21 @@ import { Input } from "@/components/ui/input"
 import Uploader from "@/components/ui/shared/Uploader"
 import { postValidation } from "@/lib/validation"
 import { Models } from "appwrite"
- 
+import { useUserContext } from "@/context/AuthContext"
+import { useCreatePost } from "@/lib/react-query/queriesAndMutations"
+import { useToast } from "../use-toast" 
+import { useNavigate } from "react-router-dom"
+
+
 type PostFormProps = {
     post?: Models.Document;
 }
 const PostForm = ({ post }:PostFormProps) => {
     // 1. Define your form.
+  const {toast} = useToast();
+  const navigate = useNavigate();
+  const {user} = useUserContext();
+  const {mutate : createPost,isError, isPending} = useCreatePost();
   const form = useForm<z.infer<typeof postValidation>>({
     resolver: zodResolver(postValidation),
     defaultValues: {
@@ -33,10 +42,18 @@ const PostForm = ({ post }:PostFormProps) => {
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof postValidation>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+   function onSubmit(values: z.infer<typeof postValidation>) {
+    const newPost = createPost({
+        ...values,
+        userId: user.id
+    }); 
+
+   if(!isPending && isError){
+    return toast({
+        title: "something went wrong"
+    })
+   } 
+   navigate("/");
   }
 
   return (
